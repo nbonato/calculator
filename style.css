@@ -1,0 +1,12 @@
+.calc-body {
+    display: grid;
+    grid-template: repeat(5, 2.2em) / repeat(4, 2.2em);
+    margin: 10px 0;
+}
+
+button {
+    width: 2em;
+    height: 2em;
+    margin: 0.1em;
+    border-radius: 40%;
+}
