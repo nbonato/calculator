@@ -22,4 +22,5 @@ button:hover {
 #screen {
     border: solid 1px black;
     height: 1em;
+    text-align: right;
 }
