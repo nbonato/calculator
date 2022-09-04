@@ -77,8 +77,10 @@ function parseButton(e) {
             case "=":
                 second = parseFloat(screen.textContent);
                 let result = operate(parseFloat(first), second, operator);
-                screen.textContent = Math.round(result * 100) / 100;
-                clear = 1;
+                if (!isNaN(result)) {
+                    screen.textContent = Math.round(result * 100) / 100;
+                    clear = 1;    
+                };
                 break;
             case ".":
                 if (!screen.textContent.includes(".")) {
