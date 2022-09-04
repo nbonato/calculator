@@ -24,6 +24,10 @@ function divide(a, b) {
     return a / b;
 };
 
+function percentage(a, b) {
+    return (a/100 * b)
+}
+
 function operate(a, b, operator) {
     switch (operator) {
         case "+":
@@ -38,6 +42,8 @@ function operate(a, b, operator) {
         case "÷":
             return divide(a, b);
             break;
+        case "%":
+            return percentage(a, b);
     }
 }
 
