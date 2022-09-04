@@ -27,48 +27,67 @@ function divide(a, b) {
 function operate(a, b, operator) {
     switch (operator) {
         case "+":
-            add(a, b);
+            return add(a, b);
             break;
         case "*":
-            multiply(a, b);
+            return multiply(a, b);
             break;
         case "-":
-            subtract(a, b);
+            return subtract(a, b);
             break;
         case "÷":
-            divide(a, b);
+            return divide(a, b);
             break;
     
     }
 }
 
-
+let first = 0;
+let second = 0;
+let operator = "";
+let clear = 0;
 function parseButton(e) {
+    if (clear === 1) {
+        screen.textContent = "";
+        first = 0;
+        second = 0;
+        operator = "";
+        clear = 0;
+    }
     let pressedButton = e.target.textContent;
-    
+
     if (numbers.includes(pressedButton)) {
-        if (!(pressedButton === "0" && screen.textContent === "0")) {
-            bot += e.target.textContent;
-        };
+        if (screen.textContent.length < 16) {
+            if (!(pressedButton === "0" && screen.textContent === "0")) {
+                screen.textContent += e.target.textContent;
+            };
+        }
+        
+    } else if (operators.includes(pressedButton)) {
+        first = screen.textContent;
+        screen.textContent = "";
+        operator = pressedButton;
     } else {
         switch (pressedButton) {
             case "AC":
-                clearScreen();
+                screen.textContent = "";
                 break;
-            case "C":
-                bot = bot.slice(0, -1);
+            case "del":
+                screen.textContent = screen.textContent.slice(0, -1);
                 break;
             case "=":
-                console.log(parseFloat(screen.textContent));
+                second = parseFloat(screen.textContent);
+                let result = operate(parseFloat(first), second, operator);
+                screen.textContent = Math.round(result * 100) / 100;
+                clear = 1;
                 break;
             case ".":
-                if (!bot.includes(".")) {
-                    bot += ".";
-                }
+                if (!screen.textContent.includes(".")) {
+                    screen.textContent += ".";
+                };
                 break;
         };
     };
-    screen.textContent = bot;
 };
 
 function clearScreen() {
