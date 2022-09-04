@@ -38,7 +38,6 @@ function operate(a, b, operator) {
         case "÷":
             return divide(a, b);
             break;
-    
     }
 }
 
@@ -64,7 +63,7 @@ function parseButton(e) {
         }
         
     } else if (operators.includes(pressedButton)) {
-        first = screen.textContent;
+        first += parseFloat(screen.textContent);
         screen.textContent = "";
         operator = pressedButton;
     } else {
