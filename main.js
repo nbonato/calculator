@@ -1,5 +1,7 @@
 const buttons = document.querySelectorAll("button");
-const screen = document.getElementById("screen");
+const currentScreen = document.getElementById("current-screen");
+const topScreen = document.getElementById("top-screen");
+
 buttons.forEach(button => {
     button.addEventListener("click", parseButton)
 });
@@ -25,7 +27,7 @@ function divide(a, b) {
 };
 
 function percentage(a, b) {
-    return (a/100 * b)
+    return (a/100 * b);
 }
 
 function operate(a, b, operator) {
@@ -53,44 +55,44 @@ let operator = "";
 let clear = 0;
 function parseButton(e) {
     if (clear === 1) {
-        screen.textContent = "";
-        first = 0;
-        second = 0;
-        operator = "";
+        allClear();
         clear = 0;
     }
     let pressedButton = e.target.textContent;
 
     if (numbers.includes(pressedButton)) {
-        if (screen.textContent.length < 16) {
-            if (!(pressedButton === "0" && screen.textContent === "0")) {
-                screen.textContent += e.target.textContent;
+        if (currentScreen.textContent.length < 16) {
+            if (!(pressedButton === "0" && currentScreen.textContent === "0")) {
+                currentScreen.textContent += e.target.textContent;
             };
         }
         
     } else if (operators.includes(pressedButton)) {
-        first += parseFloat(screen.textContent);
-        screen.textContent = "";
+        first += parseFloat(currentScreen.textContent);
+        topScreen.textContent += (currentScreen.textContent + " " + pressedButton);
+        currentScreen.textContent = "";
         operator = pressedButton;
     } else {
         switch (pressedButton) {
             case "AC":
-                screen.textContent = "";
+                allClear();
                 break;
             case "del":
-                screen.textContent = screen.textContent.slice(0, -1);
+                currentScreen.textContent = currentScreen.textContent.slice(0, -1);
                 break;
             case "=":
-                second = parseFloat(screen.textContent);
+                topScreen.textContent += currentScreen.textContent;
+                second = parseFloat(currentScreen.textContent);
                 let result = operate(parseFloat(first), second, operator);
                 if (!isNaN(result)) {
-                    screen.textContent = Math.round(result * 100) / 100;
+                    currentScreen.textContent = Math.round(result * 100) / 100;
+                    topScreen.textContent = "";
                     clear = 1;    
                 };
                 break;
             case ".":
-                if (!screen.textContent.includes(".")) {
-                    screen.textContent += ".";
+                if (!currentScreen.textContent.includes(".")) {
+                    currentScreen.textContent += ".";
                 };
                 break;
         };
@@ -98,5 +100,13 @@ function parseButton(e) {
 };
 
 function clearScreen() {
-    screen.textContent = "";
+    currentScreen.textContent = "";
+}
+
+function allClear() {
+    topScreen.textContent = "";
+    currentScreen.textContent = "";
+    first = 0;
+    second = 0;
+    operator = "";
 }

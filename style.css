@@ -20,8 +20,19 @@ button:hover {
     color: white;
 }
 
-#screen {
+#calc-screen {
     border: solid 1px black;
-    height: 1em;
+    height: 1.8em;
     text-align: right;
+    padding-right: 0.1em;
+}
+
+#top-screen {
+    font-size: 0.6em;
+}
+
+#top-screen::after {
+    content:"";
+    display:inline-block;
+    width:0px;
 }
