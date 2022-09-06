@@ -46,7 +46,7 @@ function operate(a, b, operator) {
             break;
         case "%":
             return percentage(a, b);
-    }
+    };
 }
 
 let first = undefined;
@@ -68,11 +68,7 @@ function parseButton(e) {
         };
         
     } else if (operators.includes(pressedButton)) {
-        if (first === undefined) {
-            first = parseFloat(currentScreen.textContent);
-        } else {
-            first += parseFloat(currentScreen.textContent);
-        };
+        first = parseFloat(currentScreen.textContent);
         topScreen.textContent += (currentScreen.textContent + " " + pressedButton);
         currentScreen.textContent = "";
         operator = pressedButton;
@@ -85,15 +81,23 @@ function parseButton(e) {
                 currentScreen.textContent = currentScreen.textContent.slice(0, -1);
                 break;
             case "=":
-                topScreen.textContent += currentScreen.textContent;
-                second = parseFloat(currentScreen.textContent);
-                let result = operate(parseFloat(first), second, operator);
-                console.log(first);
-                if (!isNaN(result)) {
-                    currentScreen.textContent = Math.round(result * 100) / 100;
-                    topScreen.textContent = "";    
-                };
-                clear = 1;
+                if (operator === "") {
+                    console.log("no operator");
+                    // control value
+
+                } else {
+                    topScreen.textContent += currentScreen.textContent;
+                    second = parseFloat(currentScreen.textContent);
+                    let result = operate(parseFloat(first), second, operator);
+                    console.log(first);
+                    if (!isNaN(result)) {
+                        currentScreen.textContent = Math.round(result * 100) / 100;
+                        topScreen.textContent = "";    
+                    };
+
+                }
+                
+                
                 break;
             case ".":
                 if (!currentScreen.textContent.includes(".")) {
