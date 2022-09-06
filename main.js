@@ -55,7 +55,6 @@ let operator = "";
 let clear = 0;
 function parseButton(e) {
     if (clear === 1) {
-        console.log("culo");
         allClear();
         clear = 0;
     }
