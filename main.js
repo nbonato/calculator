@@ -49,12 +49,13 @@ function operate(a, b, operator) {
     }
 }
 
-let first = 0;
-let second = 0;
+let first = undefined;
+let second = undefined;
 let operator = "";
 let clear = 0;
 function parseButton(e) {
     if (clear === 1) {
+        console.log("culo");
         allClear();
         clear = 0;
     }
@@ -65,10 +66,14 @@ function parseButton(e) {
             if (!(pressedButton === "0" && currentScreen.textContent === "0")) {
                 currentScreen.textContent += e.target.textContent;
             };
-        }
+        };
         
     } else if (operators.includes(pressedButton)) {
-        first += parseFloat(currentScreen.textContent);
+        if (first === undefined) {
+            first = parseFloat(currentScreen.textContent);
+        } else {
+            first += parseFloat(currentScreen.textContent);
+        };
         topScreen.textContent += (currentScreen.textContent + " " + pressedButton);
         currentScreen.textContent = "";
         operator = pressedButton;
@@ -84,11 +89,12 @@ function parseButton(e) {
                 topScreen.textContent += currentScreen.textContent;
                 second = parseFloat(currentScreen.textContent);
                 let result = operate(parseFloat(first), second, operator);
+                console.log(first);
                 if (!isNaN(result)) {
                     currentScreen.textContent = Math.round(result * 100) / 100;
-                    topScreen.textContent = "";
-                    clear = 1;    
+                    topScreen.textContent = "";    
                 };
+                clear = 1;
                 break;
             case ".":
                 if (!currentScreen.textContent.includes(".")) {
