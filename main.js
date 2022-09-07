@@ -56,6 +56,10 @@ let clean = 0;
 function parseButton(e) {
     let pressedButton = e.target.textContent;
     if (numbers.includes(pressedButton)) {
+        if (clean === 1) {
+            currentScreen.textContent = "";
+            clean = 0;
+        };
         if (currentScreen.textContent.length < 16) {
             if (currentScreen.textContent === "0") {
                 currentScreen.textContent = e.target.textContent;
@@ -94,6 +98,7 @@ function parseButton(e) {
                         topScreen.textContent = "";  
                         second = 0;
                         operator = "";
+                        clean = 1;
                     };
                 };
                 break;
