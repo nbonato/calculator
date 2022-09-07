@@ -14,7 +14,7 @@ function add(a, b) {
     return a + b;
 };
 
-function multiplicate(a, b) {
+function multiply(a, b) {
     return a * b;
 };
 
@@ -35,7 +35,7 @@ function operate(a, b, operator) {
         case "+":
             return add(a, b);
             break;
-        case "*":
+        case "x":
             return multiply(a, b);
             break;
         case "-":
@@ -52,17 +52,19 @@ function operate(a, b, operator) {
 let first = undefined;
 let second = undefined;
 let operator = "";
-let clear = 0;
+let clean = 0;
 function parseButton(e) {
-    if (clear === 1) {
+    if (clean === 1) {
         allClear();
-        clear = 0;
+        clean = 0;
     }
     let pressedButton = e.target.textContent;
 
     if (numbers.includes(pressedButton)) {
         if (currentScreen.textContent.length < 16) {
-            if (!(pressedButton === "0" && currentScreen.textContent === "0")) {
+            if (currentScreen.textContent === "0") {
+                currentScreen.textContent = e.target.textContent;
+            } else {
                 currentScreen.textContent += e.target.textContent;
             };
         };
@@ -82,22 +84,20 @@ function parseButton(e) {
                 break;
             case "=":
                 if (operator === "") {
-                    console.log("no operator");
-                    // control value
 
                 } else {
                     topScreen.textContent += currentScreen.textContent;
                     second = parseFloat(currentScreen.textContent);
                     let result = operate(parseFloat(first), second, operator);
-                    console.log(first);
                     if (!isNaN(result)) {
+                        first = result;
                         currentScreen.textContent = Math.round(result * 100) / 100;
-                        topScreen.textContent = "";    
-                    };
+                        topScreen.textContent = "";  
+                        second = 0;
+                        operator = "";
 
-                }
-                
-                
+                    };
+                };
                 break;
             case ".":
                 if (!currentScreen.textContent.includes(".")) {
@@ -114,8 +114,7 @@ function clearScreen() {
 
 function allClear() {
     topScreen.textContent = "";
-    currentScreen.textContent = "";
-    first = 0;
+    currentScreen.textContent = 0;
     second = 0;
     operator = "";
 }
