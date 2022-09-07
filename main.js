@@ -42,6 +42,11 @@ function operate(a, b, operator) {
             return subtract(a, b);
             break;
         case "÷":
+            console.log("Here");
+            if (b === 0) {
+                return ("zeroDivision");
+                break;
+            }
             return divide(a, b);
             break;
         case "%":
@@ -54,6 +59,9 @@ let second = undefined;
 let operator = "";
 let clean = 0;
 function parseButton(e) {
+    if (currentScreen.textContent === "Dividing by zero!") {
+        allClear();
+    };
     let pressedButton = e.target.textContent;
     if (numbers.includes(pressedButton)) {
         if (clean === 1) {
@@ -92,14 +100,18 @@ function parseButton(e) {
                     topScreen.textContent += currentScreen.textContent;
                     second = parseFloat(currentScreen.textContent);
                     let result = operate(parseFloat(first), second, operator);
+                    console.log(result);
                     if (!isNaN(result)) {
+                    
                         first = result;
                         currentScreen.textContent = Math.round(result * 100) / 100;
                         topScreen.textContent = "";  
                         second = 0;
                         operator = "";
                         clean = 1;
-                    };
+                    } else if (result === "zeroDivision") {
+                        currentScreen.textContent = "Dividing by zero!";
+                    };    
                 };
                 break;
             case ".":
