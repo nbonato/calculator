@@ -54,12 +54,7 @@ let second = undefined;
 let operator = "";
 let clean = 0;
 function parseButton(e) {
-    if (clean === 1) {
-        allClear();
-        clean = 0;
-    }
     let pressedButton = e.target.textContent;
-
     if (numbers.includes(pressedButton)) {
         if (currentScreen.textContent.length < 16) {
             if (currentScreen.textContent === "0") {
@@ -79,6 +74,10 @@ function parseButton(e) {
             case "AC":
                 allClear();
                 break;
+            case "C":
+                currentScreen.textContent = 0;
+                second = undefined;
+                break;
             case "del":
                 currentScreen.textContent = currentScreen.textContent.slice(0, -1);
                 break;
@@ -95,7 +94,6 @@ function parseButton(e) {
                         topScreen.textContent = "";  
                         second = 0;
                         operator = "";
-
                     };
                 };
                 break;
