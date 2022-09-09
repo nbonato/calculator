@@ -1,27 +1,29 @@
 .calc {
-    max-width: 8.8em;
+    max-width: 8em;
 }
 .calc-body {
     display: grid;
-    grid-template: repeat(5, 2.2em) / repeat(4, 2.2em);
-    margin: 10px 0;
+    grid-template: repeat(5, 2em) / repeat(4, 2em);
 }
 
-button {
+.calc-btn {
+    font-family: Arial, Helvetica, sans-serif;
     width: 2em;
     height: 2em;
-    margin: 0.1em;
-    border-radius: 40%;
-    padding: 0px; /* without this, text is off-center in chrome */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(195, 195, 195);
 }
 
-button:hover {
+.calc-btn:hover {
     background-color: rgb(68, 68, 68);
     color: white;
 }
 
 #calc-screen {
-    border: solid 1px black;
+    padding: 0.2em;
+    background-color: #a6ada4;
     height: 1.8em;
     text-align: right;
     padding-right: 0.1em;

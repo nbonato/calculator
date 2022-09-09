@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll("button");
+const buttons = Array.from(document.getElementsByClassName("calc-btn"));
 const currentScreen = document.getElementById("current-screen");
 const topScreen = document.getElementById("top-screen");
 
