@@ -77,10 +77,18 @@ function parseButton(e) {
         };
         
     } else if (operators.includes(pressedButton)) {
-        first = parseFloat(currentScreen.textContent);
-        topScreen.textContent += (currentScreen.textContent + " " + pressedButton);
-        currentScreen.textContent = "";
-        operator = pressedButton;
+        lastButTwo = topScreen.textContent.charAt(topScreen.textContent.length - 1);
+        if (!(operators.includes(lastButTwo) && currentScreen.textContent === "")) {
+            if (operator !== "") {
+                first = operate(first, parseFloat(currentScreen.textContent), operator);
+                //console.log(first, currentScreen.textContent, operator);
+            } else {
+                first = parseFloat(currentScreen.textContent);
+            };
+            topScreen.textContent += (currentScreen.textContent + " " + pressedButton);
+            currentScreen.textContent = "";
+            operator = pressedButton;
+        };
     } else {
         switch (pressedButton) {
             case "AC":
@@ -100,7 +108,6 @@ function parseButton(e) {
                     topScreen.textContent += currentScreen.textContent;
                     second = parseFloat(currentScreen.textContent);
                     let result = operate(parseFloat(first), second, operator);
-                    console.log(result);
                     if (!isNaN(result)) {
                     
                         first = result;
