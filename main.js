@@ -68,7 +68,7 @@ function parseButton(e) {
             currentScreen.textContent = "";
             clean = 0;
         };
-        if (currentScreen.textContent.length < 16) {
+        if (currentScreen.textContent.length < 14) {
             if (currentScreen.textContent === "0") {
                 currentScreen.textContent = e.target.textContent;
             } else {
