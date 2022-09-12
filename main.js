@@ -6,7 +6,7 @@ buttons.forEach(button => {
     button.addEventListener("click", parseButton)
 });
 
-const operators = ["+", "-", "x", "÷", "%"];
+const operators = ["+", "-", "×", "÷", "%"];
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 let bot = "";
 
@@ -35,7 +35,7 @@ function operate(a, b, operator) {
         case "+":
             return add(a, b);
             break;
-        case "x":
+        case "×":
             return multiply(a, b);
             break;
         case "-":
