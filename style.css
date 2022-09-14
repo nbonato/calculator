@@ -3,11 +3,22 @@
 
 }
 
+body {
+    background-color: rgb(131, 131, 131);
+}
+
+
+#intro {
+    color: white;
+    text-align: center;
+}
+
 .calc {
     max-width: 8.9em;
     background-color: rgb(69, 69, 69);
     padding: 0.4em;
     border-radius: 4px;
+    margin: auto;
 }
 .calc-body {
     padding-top: 0.3em;
