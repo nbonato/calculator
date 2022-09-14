@@ -3,7 +3,13 @@ const currentScreen = document.getElementById("current-screen");
 const topScreen = document.getElementById("top-screen");
 
 buttons.forEach(button => {
-    button.addEventListener("click", parseButton)
+    button.addEventListener("click", function() {
+        parseButton(this.textContent);
+    });
+});
+  
+window.addEventListener("keydown", function (e) {
+    parseButton(e.key);
 });
 
 const operators = ["+", "-", "×", "÷", "%"];
@@ -58,11 +64,11 @@ let first = undefined;
 let second = undefined;
 let operator = "";
 let clean = 0;
-function parseButton(e) {
+function parseButton(pressedButton) {
     if (currentScreen.textContent === "Dividing by zero!") {
         allClear();
     };
-    let pressedButton = e.target.textContent;
+    
     if (numbers.includes(pressedButton)) {
         if (clean === 1) {
             currentScreen.textContent = "";
@@ -70,9 +76,9 @@ function parseButton(e) {
         };
         if (currentScreen.textContent.length < 14) {
             if (currentScreen.textContent === "0") {
-                currentScreen.textContent = e.target.textContent;
+                currentScreen.textContent = pressedButton;
             } else {
-                currentScreen.textContent += e.target.textContent;
+                currentScreen.textContent += pressedButton;
             };
         };
         
